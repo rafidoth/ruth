@@ -1,0 +1,11 @@
+import {client, database, account,ID} from './appwrite-config'
+import {Navbar} from './components/Navbar/Navbar'
+
+export default function Home() {
+
+  return (
+    <main>
+      <Navbar/>
+    </main>
+  )
+}
