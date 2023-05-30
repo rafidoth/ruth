@@ -7,13 +7,12 @@ export function Navbar(){
     return(
         <>
             <div>
-                <div className="px-4 h-[60px] bg-zinc-950 flex items-center justify-between">
+                <div className="px-20 h-[60px] bg-zinc-950 flex items-center justify-between border-b border-white/[0.1]">
                     <Image src={Ruth} width={130} alt="Ruth"/>
-                    <div className="w-10 pr-20">
+                    <div className="w-10">
                         <Dark/>
                     </div>
                 </div>
-                <div className="h-[2px] bg-yellow-500 "></div>
             </div>
         </>
     )
