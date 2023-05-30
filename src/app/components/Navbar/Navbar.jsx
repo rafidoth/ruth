@@ -1,12 +1,20 @@
-
 import { Dark } from "../DarkMode/Dark"
+import Ruth from '../../../../public/images/Ruth.png';
+import Image from "next/image";
 
 
 export function Navbar(){
     return(
-        <div className="container-fluid mx-auto px-4 h-[80px] bg-ruth-900  ">
-            <h1 className="text-3xl">hello nav</h1>
-            <Dark/>
-        </div>
+        <>
+            <div>
+                <div className="px-4 h-[100px] bg-zinc-950 flex items-center justify-between">
+                    <Image src={Ruth} alt="Ruth"/>
+                    <div className="w-10 pr-20">
+                        <Dark/>
+                    </div>
+                </div>
+                <div className="h-[2px] bg-yellow-500 "></div>
+            </div>
+        </>
     )
 }
