@@ -25,9 +25,6 @@
     border-radius: 14px;
   }
 
-  button{
-    cursor: pointer;
-  }
 @tailwind components;
 @tailwind utilities;
 

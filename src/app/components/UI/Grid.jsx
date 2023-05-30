@@ -16,17 +16,27 @@ const Grid = () =>{
         window.addEventListener('resize', handleResize);
     }, []);
 
+    const lightUp = e =>{
+        e.currentTarget.classList.add('bg-amber-400');
+    }
+
+    const lightDown = e =>{
+        e.currentTarget.classList.remove('bg-amber-400');
+    }
+
+    const lightItUp = e =>{
+        e.currentTarget.classList.add('bg-amber-300');
+    }
     const divGenerator = ()=>{
         const w = windowSize.width
         const h = windowSize.height
-        //pixel sizing
         const number = (w*h)/(40*40)
-        return [...Array(Math.ceil(number)).keys()].map((item) => <div className='w-[40px] h-[40px] border border-black dark:border-white'></div>)
+        return [...Array(Math.ceil(number)).keys()].map((item) => <div onClick={lightItUp} onMouseEnter={lightUp} onMouseLeave={lightDown} className='w-[40px] h-[40px] border border-black/[0.04] dark:border-white/[0.04]'></div>)
     }
 
     return(
             <>  
-                <div className='flex flex-wrap absolute inset-0 scale-110 opacity-[0.04]'>
+                <div className='flex flex-wrap absolute inset-0 scale-110 '>
                     {divGenerator()}
                 </div>   
             </>
