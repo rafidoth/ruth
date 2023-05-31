@@ -4,8 +4,8 @@ import {useState, useEffect} from 'react'
 
 const Grid = () =>{   
     const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: 0,
+        height: 0,
       });
     
     const handleResize = ()=>{
@@ -13,6 +13,7 @@ const Grid = () =>{
     }
 
     useEffect(() => {
+        setWindowSize({...windowSize, width:window.innerWidth, height:window.innerHeight})
         window.addEventListener('resize', handleResize);
     }, []);
 

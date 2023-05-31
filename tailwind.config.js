@@ -18,6 +18,10 @@ module.exports = {
         'ruth-bg-900' : '#030604',
         'ruth-bg-800' :'#0F221A'
       },
+      fontFamily: {
+        inter : ['Inter'],
+        jetBrain : ['JetBrains Mono'],
+      }
     },
   },
   plugins: [],
