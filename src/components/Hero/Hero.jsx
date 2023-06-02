@@ -1,15 +1,14 @@
 import {Grid} from '../UI/Grid'
-import { Navbar } from '../Navbar/Navbar'
 import Image from 'next/image'
-import blur from '../../../../public/images/blur.png'
-import blur1 from '../../../../public/images/blur1.png'
+import blur from '../../../public/images/blur.png'
+import blur1 from '../../../public/images/blur1.png'
 import {Btn} from '../UI/Btn'
-import {heroHeading} from '../../../../public/data/data'
+import {heroHeading} from '../../../public/data/data'
 import {Heading} from './Heading'
+import Link from 'next/link'
 const Hero = ()=>{
     return(
         <>
-            <Navbar/>  
             <div className={`container-fluid h-screen overflow-hidden relative border-b border-white/[0.1]`}>
                 <Grid/>
                 <div className=' max-w-screen-lg h-full mx-auto px-4 flex flex-col gap-6 justify-center'>
@@ -21,7 +20,7 @@ const Hero = ()=>{
                        </p>
                     </div>
                     <div className='flex justify-center gap-4'>
-                        <Btn colorClass={''}>Find Ruth</Btn>
+                        <Btn><Link href={'/login'}>Find Ruth</Link></Btn>
                         <Btn colorClass={''}>Explore</Btn>
                     </div>
                 </div>

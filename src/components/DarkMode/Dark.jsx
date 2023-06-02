@@ -18,7 +18,7 @@ export function Dark (){
     }
     return(
         <div>
-            <span className='cursor-pointer' onClick = {changeTheme}>{(isDark? <MoonIcon className="h-6 w-6 text-amber-400 "/>:<SunIcon className="h-6 w-6 text-amber-400"/>)}</span>
+            <span className='cursor-pointer' onClick = {changeTheme}>{(isDark? <SunIcon className="h-6 w-6 text-amber-400"/>:<MoonIcon className="h-6 w-6 text-amber-400 "/>)}</span>
         </div>
     );
 }

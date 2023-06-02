@@ -1,7 +1,4 @@
-import {client, database, account,ID} from './appwrite-config'
-import {Navbar} from './components/Navbar/Navbar'
-import { Hero } from './components/Hero/Hero'
-import { Dark } from './components/DarkMode/Dark'
+import { Hero } from '../components/Hero/Hero'
 export default function Home() {
 
   return (
