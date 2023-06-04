@@ -3,11 +3,11 @@ import { Btn } from "@/components/UI/Btn"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Input } from "@/components/UI/Input"
-import {signUp} from '../api'
+import {signUp, singnInWIthGoogle} from '../api'
+import {signInWithGoogle} from '../api'
 import Google from '../../../public/images/google.png'
 import Github from '../../../public/images/github.png'
 import Image from "next/image"
-
 export default function Page() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -26,6 +26,11 @@ export default function Page() {
     await signUp(email, password)
     router.push('/login')
   }
+  
+  const handleGoogle = async(e)=>{
+    await singnInWIthGoogle();
+  }
+
 
   return (
     <main className="container-fluid mx-auto h-screen flex justify-center items-center">
@@ -38,7 +43,7 @@ export default function Page() {
             <Btn type ='submit'>Sign Up</Btn>
             <div className="flex items-center justify-center gap-x-6">
               <span>Sign in with</span>
-              <button><Image src={Google} width={30} alt="google"/></button>
+              <button onClick= {handleGoogle}><Image src={Google} width={30} alt="google"/></button>
               <button><Image src={Github} width={30} alt="git"/></button>
             </div>
           </form>

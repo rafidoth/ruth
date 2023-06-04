@@ -16,5 +16,27 @@ export const signUp = async (email,password)=>{
     }
 }
 
+export const singnInWIthGoogle = async() =>{
+    try{
+        const response  = await account.createOAuth2Session('google','http://localhost:3000/','http://localhost:3000/register');
+        console.log(response);
+    }catch(error){
+        console.log('Found Error :' + error);
+    }
+}
+
+
+export const getCurrentLoggedInUser = async ()=>{
+
+    try{
+        let response = await account.get()
+        localStorage.setItem('user': response);
+    }catch(err){
+        localStorage.setItem('user' : 0)
+    }
+    return response;
+}
+
+
 
 
