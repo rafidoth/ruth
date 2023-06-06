@@ -1,6 +1,6 @@
 'use client'
 import { Btn } from "@/components/UI/Btn"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Input } from "@/components/UI/Input"
 import {signUp, singnInWIthGoogle} from '../api'
@@ -8,11 +8,16 @@ import {signInWithGoogle} from '../api'
 import Google from '../../../public/images/google.png'
 import Github from '../../../public/images/github.png'
 import Image from "next/image"
+
+
+
+
 export default function Page() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const router = useRouter();
-  
+ 
+
   const handleEmail = (e)=>{
     setEmail(e.target.value)
   }
@@ -29,6 +34,7 @@ export default function Page() {
   
   const handleGoogle = async(e)=>{
     await singnInWIthGoogle();
+    localStorage.setItem('isLoggedIn','1');
   }
 
 

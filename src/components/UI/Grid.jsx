@@ -31,7 +31,7 @@ const Grid = () =>{
         const w = windowSize.width
         const h = windowSize.height
         const number = (w*h)/(40*40)
-        return [...Array(Math.ceil(number)).keys()].map((item) => <div  onClick={lightItUp} onMouseEnter={lightUp} onMouseLeave={lightDown} className='w-[40px] h-[40px] border border-black/[0.04] dark:border-white/[0.04]'></div>)
+        return [...Array(Math.ceil(number)).keys()].map((item,index) => <div key={index}  onClick={lightItUp} onMouseEnter={lightUp} onMouseLeave={lightDown} className='w-[40px] h-[40px] border border-black/[0.04] dark:border-white/[0.04]'></div>)
     }
 
     return(

@@ -13,7 +13,7 @@ const Hero = ()=>{
                 <Grid/>
                 <div className=' max-w-screen-lg h-full mx-auto px-4 flex flex-col gap-6 justify-center'>
                     <Heading/>
-                    <Image className='absolute -z-10 inset-y-0 right-[400px] opacity-[0.5]' src={blur}/>
+                    <Image className='absolute -z-10 inset-y-0 right-[400px] opacity-[0.5]' src={blur} alt="beam1"/>
                     <div className='text-center text-medium z-10'> 
                        <p className={`font-jetBrain`}>
                             {heroHeading}
@@ -25,7 +25,7 @@ const Hero = ()=>{
                     </div>
                 </div>
 
-                <Image className='absolute -z-10 inset-y-0 blur-2xl opacity-[0.5]' src={blur1}/> 
+                <Image className='absolute -z-10 inset-y-0 blur-2xl opacity-[0.5]' src={blur1} alt='beam'/> 
             </div>
             {/* <div className="h-[2px] bg-yellow-500 "></div> */}
         </>

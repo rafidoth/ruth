@@ -5,13 +5,16 @@ import { Btn } from "../../components/UI/Btn"
 import Google from '../../../public/images/google.png'
 import Github from '../../../public/images/github.png'
 import Image from "next/image"
+import { singnInWIthGoogle } from "../api"
+
+
 export default function Page() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const handleEmail = (e)=>{
     setEmail(e.target.value)
-  }
+  // }
   const handlePassword = (e)=>{
     setPassword(e.target.value)
   }
@@ -19,6 +22,12 @@ export default function Page() {
   const handleSubmit = (e)=>{
     e.preventDefault()
   }
+
+  const handleGoogle = async(e)=>{
+    await singnInWIthGoogle();
+    localStorage.setItem('isLoggedIn','1');
+  }
+  
   return (
     <><main className="container-fluid mx-auto h-screen flex justify-center items-center">
         <div className="min-w-[470px] border px-6 py-12 rounded-3xl border-black/[0.1] dark:border-white/[.1] ">
@@ -30,7 +39,7 @@ export default function Page() {
             <Btn type ='submit'>Sign In</Btn>
             <div className="flex items-center justify-center gap-x-6">
               <span>Sign in with</span>
-              <button><Image src={Google} width={30} alt="google"/></button>
+              <button onClick={handleGoogle}><Image src={Google} width={30} alt="google"/></button>
               <button><Image src={Github} width={30} alt="git"/></button>
             </div>
           </form>
