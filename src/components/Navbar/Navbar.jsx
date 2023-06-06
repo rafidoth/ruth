@@ -22,7 +22,7 @@ export function Navbar(){
     return(
         <>  
             <div>
-                <div className="px-20 h-[60px] bg-zinc-950 flex items-center justify-between border-b border-white/[0.1]">
+                <div className="px-20 h-[60px] bg-[#161b22] flex items-center justify-between border-b border-white/[0.1]">
                     <Link href="/"><Image src={Ruth} width={130} alt="Ruth"/></Link>
                     <div className="flex items-center gap-x-6">
                         <Dark/>
