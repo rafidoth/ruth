@@ -15,7 +15,7 @@ module.exports = {
       },
       colors :{
         'ruth' : '#00A06E',
-        'ruth-bg-900' : '#030604',
+        'ruth-bg-900' : '#0d1117',
         'ruth-bg-800' :'#0F221A'
       },
       fontFamily: {

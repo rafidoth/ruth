@@ -33,8 +33,13 @@ export default function Page() {
   }
   
   const handleGoogle = async(e)=>{
-    await singnInWIthGoogle();
-    localStorage.setItem('isLoggedIn','1');
+    try{
+      await singnInWIthGoogle();
+      localStorage.setItem('isLoggedIn','1');
+    }catch(err){
+      console.log(err.message)
+    }
+    
   }
 
 
@@ -43,9 +48,9 @@ export default function Page() {
         <div className="min-w-[470px] border px-6 py-12 rounded-3xl border-black/[0.1] dark:border-white/[.1] ">
           <form onSubmit={handleSubmit} className="flex flex-col font-jetBrain gap-y-6">
             <label >Enter your email</label>
-            <Input handleFunction={handleEmail} placeholder='Enter email here' type={'email'} name ={'email'}/>
+            <Input inputType={'normal'} handleFunction={handleEmail} placeholder='Enter email here' type={'email'} name ={'email'}/>
             <label>Enter your password</label>
-            <Input handleFunction={handlePassword} placeholder='Enter password here' type={'password'} name ={'password'}/>
+            <Input inputType={'normal'} handleFunction={handlePassword} placeholder='Enter password here' type={'password'} name ={'password'}/>
             <Btn type ='submit'>Sign Up</Btn>
             <div className="flex items-center justify-center gap-x-6">
               <span>Sign in with</span>

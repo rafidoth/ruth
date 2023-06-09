@@ -1,4 +1,4 @@
-import {Client, Account, Databases,Permission,Role, ID} from 'appwrite'
+import {Client, Account, Databases,Permission,Role, ID, Query} from 'appwrite'
 
 const client = new Client()
     .setEndpoint(process.env.NEXT_PUBLIC_API_ENDPOINT) // Your API Endpoint
@@ -10,15 +10,27 @@ export const signUp = async (email,password)=>{
     try{
         
         const response  = await account.create(ID.unique(), email,password);
-        console.log(response);
+        // console.log(response);
     }catch(err){
-        console.log(err);
+        // console.log(err);
     }
 }
 
 export const singnInWIthGoogle = async() =>{
-    account.createOAuth2Session('google','http://localhost:3000/welcome','http://localhost:3000/register');
-    
+    try{
+        // await account.deleteSession('current')
+        account.createOAuth2Session('google','http://localhost:3000/dashboard','http://localhost:3000/register');
+    }catch(err){
+        // console.log(err);
+    }
+}
+
+export const signOut = async ()=>{
+    try{
+        return await account.deleteSession("current");
+    }catch(err){
+        console.log(err)
+    }
 }
 
 export const getLoggedInAccount = async()=>{
@@ -26,48 +38,78 @@ export const getLoggedInAccount = async()=>{
         const response = await account.get();
         console.log(response);
         handleUserData(response)
-        return response;
+        return response.$id;
     }catch(err){
-        console.log("error occured in getLoggedInAccount");
+        // console.log("error occured in getLoggedInAccount");
         return null;
+    }
+}
+
+export const getLoggedInSession= async ()=>{
+    try{
+        const session = await account.getSession('current')
+        console.log(session.$id)
+        return session.$id;
+    }catch(err){
+        
     }
 }
 
 export const handleUserData = async (loggedInAccount)=>{
     try{
         const db_response = await database.createDocument(
-            '64740ca98b29b1803ee9', 
-            '647a3d3ad5a5fffd5b81', 
+            process.env.NEXT_PUBLIC_DATABASE_ID, 
+            process.env.NEXT_PUBLIC_USERS_INFO, 
             loggedInAccount.$id,
             {'email':loggedInAccount.email},
-            [
-                Permission.read(Role.user(loggedInAccount.$id)),
+                [
+                Permission.read(Role.any()),
             ])
-        console.log(db_response)
+        // console.log(db_response)
     }catch(err){
         try{
-            const pastRecord = await database.getDocument('64740ca98b29b1803ee9', '647a3d3ad5a5fffd5b81', loggedInAccount.$id)
-            console.log(pastRecord)
+            const pastRecord = await database.getDocument(process.env.NEXT_PUBLIC_DATABASE_ID, process.env.NEXT_PUBLIC_USERS_INFO, loggedInAccount.$id)
+            // console.log(pastRecord)
         }catch(err){
             console.log(err);
         }
     }
 }
 
-
-
-
-
-export const getSessions = async()=>{
+export const isProfileCompleted = async(loggedInId)=>{
     try{
-        const response = await account.listSessions();
-        return response
+        const profileData = await database.getDocument(
+            process.env.NEXT_PUBLIC_DATABASE_ID, 
+            process.env.NEXT_PUBLIC_USERS_INFO,
+            loggedInId
+            );
+            console.log(profileData)
+        const {name,tech_interest, email, github_profile, project } = profileData;
+        const profileArray = [name,tech_interest, email, github_profile, project]
+        const isCompleted = profileArray.every(element =>element!==null)
+        // console.log(isCompleted)
+        return isCompleted;
+
     }catch(err){
         console.log(err);
-        return null;
     }
 }
 
+
+
+export const updateProfileData  = async(loggedInAccount, data)=>{
+    try{
+        const promise = await database.updateDocument(
+            process.env.NEXT_PUBLIC_DATABASE_ID,
+            process.env.NEXT_PUBLIC_USERS_INFO,
+            loggedInAccount.$id,
+            data
+        )
+        // console.log(promise)
+    }catch(err){
+        console.log(err)
+    }
+}
 
 
 
