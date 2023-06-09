@@ -3,7 +3,6 @@
 import { Input } from "@/components/UI/Input";
 import { Btn } from "@/components/UI/Btn";
 import { useState } from "react";
-import { updateProfileData,getLoggedInAccount } from "@/app/api";
 export default function InputForm (){
     const [data, setData] = useState({
         'name' : '',
@@ -13,8 +12,12 @@ export default function InputForm (){
     })
     const handleSubmit =async (e)=>{
         e.preventDefault();
-        const loggedInAccount = await getLoggedInAccount();
-        await updateProfileData(loggedInAccount, data)
+        // const isValid = Object.values(data).every(item=> item !== null && item !== '')
+        // if(isValid) {
+
+        // }else{
+        //     alert('Please fill all fields');
+        // }
     }
 
     return(<>

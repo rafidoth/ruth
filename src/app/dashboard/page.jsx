@@ -2,23 +2,22 @@
 
 
 import { useEffect, useState } from "react";
-import { getLoggedInAccount, getLoggedInSession, isProfileCompleted } from "../api";
 import InputForm from "@/components/Dashboard/InputForm";
 
 
 export default function Page(){
     const [completed, setCompleted] = useState(false);
-    useEffect(()=>{
-        const fetchData = async ()=>{
-            const loggedInId = await getLoggedInAccount()
-            // const loggedInId = await getLoggedInSession()
-            console.log(loggedInId)
-            const isCompleted = await isProfileCompleted(loggedInId)
-            // console.log(`complted : ${isCompleted}`)
-            setCompleted(isCompleted)
-        }
-        fetchData()
-    },[])
+    // useEffect(()=>{
+    //     const fetchData = async ()=>{
+    //         const loggedInId = await getLoggedInAccount()
+    //         // const loggedInId = await getLoggedInSession()
+    //         console.log(loggedInId)
+    //         const isCompleted = await isProfileCompleted(loggedInId)
+    //         // console.log(`complted : ${isCompleted}`)
+    //         setCompleted(isCompleted)
+    //     }
+    //     fetchData()
+    // },[])
 
    
     return(<>
