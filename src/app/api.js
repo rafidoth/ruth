@@ -26,9 +26,12 @@ export const signUp = async (email,password,name)=>{
 
 export const signIn = async (email,password)=>{
     try{
+        await account.deleteSession("current");
         await account.createEmailSession(email, password);
+        return 1;
     }catch(e){
         console.log(e.message)
+        return 0;
     }
 }
 
@@ -43,10 +46,11 @@ export const signOut = async ()=>{
 
 export const getLoggedInAccount = async()=>{
     try{
-        return await account.get();
+        const acc = await account.get();
+        console.log(acc)
     }catch(err){
         // console.log("error occured in getLoggedInAccount");
-        return null;
+        return err.message;
     }
 }
 
