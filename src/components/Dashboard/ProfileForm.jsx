@@ -3,7 +3,7 @@
 import { Input } from "@/components/UI/Input";
 import { Btn } from "@/components/UI/Btn";
 import { useState } from "react";
-export default function InputForm (){
+export default function ProfileForm (){
     const [data, setData] = useState({
         'name' : '',
         'tech_interest':'',
@@ -12,12 +12,12 @@ export default function InputForm (){
     })
     const handleSubmit =async (e)=>{
         e.preventDefault();
-        // const isValid = Object.values(data).every(item=> item !== null && item !== '')
-        // if(isValid) {
-
-        // }else{
-        //     alert('Please fill all fields');
-        // }
+        const isValid = Object.values(data).every(item=> item !== null && item !== '')
+        if(isValid) {
+            
+        }else{
+            alert('Please fill all fields');
+        }
     }
 
     return(<>

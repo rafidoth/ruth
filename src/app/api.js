@@ -19,6 +19,9 @@ export const signUp = async (email,password,name)=>{
                         [
                             Permission.read(Role.any()),
                         ])
+        const user = await account.get();
+        console.log(user)
+        return user
     }catch(err){
         console.log(err.message);
     }
@@ -26,12 +29,12 @@ export const signUp = async (email,password,name)=>{
 
 export const signIn = async (email,password)=>{
     try{
-        await account.deleteSession("current");
         await account.createEmailSession(email, password);
-        return 1;
+        const user = account.get();
+        return user;
     }catch(e){
         console.log(e.message)
-        return 0;
+        return 'x'
     }
 }
 
@@ -41,17 +44,12 @@ export const signOut = async ()=>{
         return await account.deleteSession("current");
     }catch(err){
         console.log(err.message);
+        console.log("error from signOut");
     }
 }
 
 export const getLoggedInAccount = async()=>{
-    try{
-        const acc = await account.get();
-        console.log(acc)
-    }catch(err){
-        // console.log("error occured in getLoggedInAccount");
-        return err.message;
-    }
+    return account.get()
 }
 
 /// If there is an existing document then rreturn that

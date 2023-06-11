@@ -2,8 +2,8 @@
 
 
 import { useEffect, useState } from "react";
-import InputForm from "@/components/Dashboard/InputForm";
-
+import InputForm from "@/components/Dashboard/ProfileForm";
+import { Navbar } from "@/components/Navbar/Navbar";
 
 export default function Page(){
     const [completed, setCompleted] = useState(false);
@@ -21,6 +21,7 @@ export default function Page(){
 
    
     return(<>
+        <Navbar/>
         <div className="container mx-auto px-5 py-16 font-inter">
             <h1 className="text-center font-jetBrain text-5xl">Hey,ruth<span className="text-amber-400">.</span></h1>
             <h3 className="text-center font-jetBrain text-3xl">How are <span className="text-ambedr-400">you</span>?</h3>

@@ -9,7 +9,7 @@ const Input = ({ handleFunction, type, name,placeholder, inputType }) => {
     'Android Application Development',
     'iOS Application Development',
     'Desktop Application Development',
-    'Front End ENgineering',
+    'Front End Engineering',
     'Backend Engineering',
     'Machine Learning',
     'Blockchain Development',

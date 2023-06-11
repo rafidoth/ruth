@@ -6,31 +6,39 @@ import Link from "next/link";
 import { Btn } from "../UI/Btn";
 import {useState, useEffect} from 'react'
 import { signOut } from "@/app/api";
+
+
 export function Navbar(){
-    const [isLoggedIn, setIsLoggedIn] = useState('0')
+    const local = localStorage.getItem('user')
+
+    const [user, setUser] = useState({
+        isLoggedIn : '0',
+        name :''
+    })
     
     useEffect(()=>{
-        const loggedInStatus = localStorage.getItem('isLoggedIn')
-        setIsLoggedIn(loggedInStatus)
+        if(local){
+            setUser({
+                isLoggedIn : '1',
+                name : JSON.parse(local).name
+            })
+        }else{
+            setUser({
+                isLoggedIn : '0',
+                name : 'Ruth'
+            })
+        }
+    },[])
 
-    })
+    
 
     const signOutHandler = async ()=>{
         await signOut()
-        localStorage.setItem('isLoggedIn','0');
-        setIsLoggedIn('0')
+        localStorage.removeItem('user')
+        setUser({...user, isLoggedIn : '0'})
         window.location.href = "/"
     }
 
-    // const getName = async () =>{
-    //     if(isLoggedIn==='1'){
-    //         const acc = await getLoggedInAccount()
-    //         console.log(acc)
-    //     }else{
-    //         return 'Ruth'
-    //     }
-    // }
-    // const name = getName()
 
     return( 
             <div>
@@ -38,8 +46,8 @@ export function Navbar(){
                     <Link href="/"><Image src={Ruth} width={130} alt="Ruth"/></Link>
                     <div className="flex items-center gap-x-6 relative">
                         <Dark/>
-                        {/* <h1>Hello, {`${name}`}</h1> */}
-                        {isLoggedIn === '1'? <Link href='/'><Btn onClick={signOutHandler} behindBlack={true}>Sign Out</Btn></Link>:<Link href='/register'><Btn behindBlack={true}>Sign Up</Btn></Link>}
+                        <h1>Hello, <span className="text-amber-400">{`${user.name}`}</span></h1>
+                        {user.isLoggedIn === '1'? <Link href='/'><Btn onClick={signOutHandler} behindBlack={true}>Sign Out</Btn></Link>:<Link href='/register'><Btn behindBlack={true}>Sign Up</Btn></Link>}
                     </div>
                 </div>
             </div>
